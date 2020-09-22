@@ -5,7 +5,7 @@
     <parent>
         <artifactId>hdmcp</artifactId>
         <groupId>com.hdmcp</groupId>
-        <version>0.2.1.RELEASE</version>
+        <version>0.0.1-SNAPSHOT</version>
         <relativePath>..</relativePath>
     </parent>
     <artifactId>product</artifactId>
@@ -17,7 +17,6 @@
         <module>product-common</module>
         <module>product-dubbo</module>
         <module>product-web</module>
-        <module>product-feign</module>
         <module>product-ws</module>
     </modules>
 

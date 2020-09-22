@@ -5,7 +5,7 @@
     <parent>
         <artifactId>hdmcp</artifactId>
         <groupId>com.hdmcp</groupId>
-        <version>0.2.1.RELEASE</version>
+        <version>0.0.1-SNAPSHOT</version>
         <relativePath>..</relativePath>
     </parent>
     <artifactId>core</artifactId>

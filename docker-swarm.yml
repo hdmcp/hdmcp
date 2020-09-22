@@ -2,20 +2,8 @@ version: '3.3'
 
 services:
 
-  eureka:
-    image: registry.cn-qingdao.aliyuncs.com/upcwangying/eureka:0.2.1.RELEASE
-    restart: on-failure
-    networks:
-      - samples
-    ports:
-      - "8762:8080"
-    environment:
-      JAVA_OPTS: '-server -Xmx1g'
-      PROFILE: 'default'
-      SERVER_PORT: 8080
-
   admin:
-    image: registry.cn-qingdao.aliyuncs.com/upcwangying/admin:0.2.1.RELEASE
+    image: registry.cn-qingdao.aliyuncs.com/upcwangying/admin:0.0.1-SNAPSHOT
     restart: on-failure
     networks:
       - samples
@@ -25,37 +13,6 @@ services:
       JAVA_OPTS: '-server -Xmx1g'
       PROFILE: 'default'
       SERVER_PORT: 8080
-
-  hystrix-dashboard:
-    image: registry.cn-qingdao.aliyuncs.com/upcwangying/hystrix-dashboard:0.2.1.RELEASE
-    restart: on-failure
-    networks:
-      - samples
-    ports:
-      - "9094:8080"
-    environment:
-      JAVA_OPTS: '-server -Xmx1g'
-      PROFILE: 'default'
-      SERVER_PORT: 8080
-      EUREKA_SERVER_HOST: 'eureka'
-      EUREKA_SERVER_PORT: 8080
-
-  zuul:
-    image: registry.cn-qingdao.aliyuncs.com/upcwangying/zuul:0.2.1.RELEASE
-    restart: on-failure
-    networks:
-      - samples
-    ports:
-      - "9090:8080"
-    environment:
-      JAVA_OPTS: '-server -Xmx1g'
-      PROFILE: 'default'
-      SERVER_PORT: 8080
-      EUREKA_SERVER_HOST: 'eureka'
-      EUREKA_SERVER_PORT: 8080
-    depends_on:
-      - eureka
-      - user
 
   user:
     image: registry.cn-qingdao.aliyuncs.com/upcwangying/user-web:0.1.3-SNAPSHOT
@@ -73,7 +30,6 @@ services:
       ADMIN_HOST: 'admin'
       ADMIN_PORT: 8080
     depends_on:
-      - eureka
       - admin
 
   product:
@@ -92,7 +48,6 @@ services:
       ADMIN_HOST: 'admin'
       ADMIN_PORT: 8080
     depends_on:
-      - eureka
       - admin
 
   order:
@@ -111,7 +66,6 @@ services:
       ADMIN_HOST: 'admin'
       ADMIN_PORT: 8080
     depends_on:
-      - eureka
       - admin
 
 networks:

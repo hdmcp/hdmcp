@@ -46,24 +46,6 @@ AT 模式基于支持**本地 ACID 事务**的**关系型数据库**:
 4. rpc调用完毕后, business通知server提交事务
 5. 每个分支本地事务提交后, 会通知server创建分支事务, 当rpc调用完毕后, business通知server提交全局事务(这个business是不是根据全局事务发起者方法里有没有抛出异常来决定提交或者回滚全局事务)
 
-## zuul 项目
-
-> 相关filter执行顺序
-
-```
-RateLimitPreFilter(限流) -> GrayFilter(灰度发布) -> AuthFilter(认证) -> PermissionFilter(鉴权)
-```
-
-### 路由通配符
-
-映射路径 `/user/**` 之后的 `/**` 大有讲究, 还可以配置为 `/*` 或者 `/?`
-
-| 规则 | 释义 | 示例 |
-| :------: | :------: | :------: |
-| /** | 匹配任意数量的路径与字符 | /user/add, /user/add/a, /user/add/a/b |
-| /* | 匹配任意数量的字符 | /user/add, /user/mul, /user/b |
-| /? | 匹配单个字符 | /user/a, /user/b |
-
 ## Maven dockerfile plugin
 
 ```text
