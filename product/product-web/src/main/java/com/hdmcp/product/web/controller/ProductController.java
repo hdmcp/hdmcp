@@ -184,6 +184,11 @@ public class ProductController implements DubboProductClient {
             return ResultVOUtils.error(ResultEnum.PARAM_ERROR, errorsMap);
         }
 
+        updateProductList(productInputList);
+        return ResultVOUtils.success();
+    }
+
+    private void updateProductList(List<ProductInput> productInputList) {
         List<String> productIds = productInputList.stream()
                 .map(ProductInput::getProductId).collect(Collectors.toList());
 
@@ -196,7 +201,6 @@ public class ProductController implements DubboProductClient {
                     return product;
                 }).collect(Collectors.toList());
         productService.saveAll(productList);
-        return ResultVOUtils.success();
     }
 
     /**
@@ -222,11 +226,16 @@ public class ProductController implements DubboProductClient {
     }
 
     @Override
-    public String sayHiTo(String name) {
-        return String.format("Hello, %s", name);
+    public ResultVO queryProductListByProductIds(List<String> productIds) {
+        return this.getProductListByProductIds(productIds);
     }
 
     @Override
+    public ResultVO updateProducts(List<ProductInput> productInputList) {
+        this.updateProductList(productInputList);
+        return ResultVOUtils.success();
+    }
+
     public ResultVO getProducts() {
         List<ProductOutput> productOutputList = productService.getAllProduct().stream().map(product -> {
             ProductOutput productOutput = BeanCreators.createProductOutput();

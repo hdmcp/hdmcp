@@ -26,10 +26,10 @@
 
 package com.hdmcp.order.web.service.impl;
 
+import com.hdmcp.product.dubbo.DubboProductClient;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.hdmcp.order.web.repository.OrderDetailRepository;
 import com.hdmcp.order.web.repository.OrderMainRepository;
-import com.hdmcp.product.feign.ProductClient;
 import com.hdmcp.product.common.entity.ProductInput;
 import com.hdmcp.product.common.entity.ProductOutput;
 import com.hdmcp.product.common.utils.BeanCreators;
@@ -40,6 +40,7 @@ import com.hdmcp.order.common.entity.OrderDetailInput;
 import com.hdmcp.order.web.entity.OrderDetail;
 import com.hdmcp.order.web.entity.OrderMain;
 import com.hdmcp.order.web.service.OrderService;
+import org.apache.dubbo.config.annotation.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -73,8 +74,8 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderDetailRepository orderDetailRepository;
 
-    @Autowired
-    private ProductClient productClient;
+    @Reference
+    private DubboProductClient productClient;
 
     @Override
     public List<OrderMain> getAllOrderMain() {
@@ -122,7 +123,7 @@ public class OrderServiceImpl implements OrderService {
 
         orderMainRepository.save(orderMain);
         orderDetailRepository.saveAll(orderDetailList);
-        ResultVO resultVO = productClient.updateProduct(productInputList);
+        ResultVO resultVO = productClient.updateProducts(productInputList);
         if (resultVO == null) {
             log.error("order: params=[orderDetailInputList:{}], error=[msg:{}]",
                     orderDetailInputList, "ProductClient::updateProduct调用异常, 触发降级.");
@@ -159,7 +160,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @HystrixCommand(fallbackMethod = "getProductListByProductIdsFallbackMethod")
     public ResultVO getProductListByProductIds(List<String> productIdList) {
-        ResultVO resultVO = productClient.getProductListByProductIds(productIdList);
+        ResultVO resultVO = productClient.queryProductListByProductIds(productIdList);
         if (resultVO == null) {
             log.error("order: params=[productIdList:{}], error=[msg:{}]",
                     productIdList, "ProductClient::getProductListByProductIds调用异常, 触发降级.");

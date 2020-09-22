@@ -26,6 +26,9 @@
 package com.hdmcp.product.dubbo;
 
 import com.hdmcp.core.vo.ResultVO;
+import com.hdmcp.product.common.entity.ProductInput;
+
+import java.util.List;
 
 /**
  * Dubbo接口
@@ -34,7 +37,8 @@ import com.hdmcp.core.vo.ResultVO;
  */
 public interface DubboProductClient {
 
-    String sayHiTo(String name);
+    ResultVO queryProductListByProductIds(List<String> productIds);
 
-    ResultVO getProducts();
+    ResultVO updateProducts(List<ProductInput> productInputList);
+
 }
