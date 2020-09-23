@@ -33,6 +33,7 @@ package com.hdmcp.core.enums;
  */
 public enum ResultEnum {
 
+    PERMISSION_ERROR(5, "权限错误"),
     PARAM_ERROR(10, "参数错误"),
     TOKEN_EXPIRED(15, "Token已过期"),
     TOKEN_ERROR(16, "Token错误"),

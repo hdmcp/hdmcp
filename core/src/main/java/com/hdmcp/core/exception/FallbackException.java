@@ -31,7 +31,7 @@ package com.hdmcp.core.exception;
  *
  * @author WANGY
  */
-public class FallbackException extends SamplesException {
+public class FallbackException extends HdmcpException {
     private static final long serialVersionUID = 3581367359864724861L;
 
     public FallbackException() {

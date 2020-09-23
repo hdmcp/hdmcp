@@ -25,8 +25,9 @@
 
 package com.hdmcp.gateway.filters;
 
+import com.hdmcp.core.enums.ResultEnum;
+import com.hdmcp.core.exception.HdmcpException;
 import com.hdmcp.core.utils.JwtUtil;
-import com.hdmcp.gateway.exception.PermissionException;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.cloud.gateway.route.Route;
@@ -60,7 +61,7 @@ public class AuthFilter implements GlobalFilter {
             mutate.header("x-user-name", userMap.get("user"));
             mutate.header("x-user-serviceName", uri.getHost());
         } else {
-            throw new PermissionException("user not exist, please check");
+            throw new HdmcpException(ResultEnum.USER_NOT_EXIST);
         }
         ServerHttpRequest buildReuqest =  mutate.build();
         return chain.filter(exchange.mutate().request(buildReuqest).build());

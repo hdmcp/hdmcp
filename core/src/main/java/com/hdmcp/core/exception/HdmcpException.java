@@ -26,31 +26,43 @@
 
 package com.hdmcp.core.exception;
 
+import com.hdmcp.core.enums.ResultEnum;
+
 /**
  * 异常基类
  *
  * @author WANGY
  */
-public class SamplesException extends RuntimeException {
+public class HdmcpException extends RuntimeException {
     private static final long serialVersionUID = 3581367359864724861L;
 
     protected Integer code;
 
-    public SamplesException() {
+    public HdmcpException() {
     }
 
-    public SamplesException(Integer code) {
+    public HdmcpException(Integer code) {
         this.code = code;
     }
 
-    public SamplesException(Integer code, String message) {
+    public HdmcpException(Integer code, String message) {
         super(message);
         this.code = code;
     }
 
-    public SamplesException(Integer code, String message, Throwable cause) {
+    public HdmcpException(ResultEnum resultEnum) {
+        super(resultEnum.getDesc());
+        this.code = resultEnum.getCode();
+    }
+
+    public HdmcpException(Integer code, String message, Throwable cause) {
         super(message, cause);
         this.code = code;
+    }
+
+    public HdmcpException(ResultEnum resultEnum, Throwable cause) {
+        super(resultEnum.getDesc(), cause);
+        this.code = resultEnum.getCode();
     }
 
     public Integer getCode() {

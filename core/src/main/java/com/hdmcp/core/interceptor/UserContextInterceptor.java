@@ -26,6 +26,8 @@
 package com.hdmcp.core.interceptor;
 
 import com.alibaba.fastjson.JSON;
+import com.hdmcp.core.enums.ResultEnum;
+import com.hdmcp.core.exception.HdmcpException;
 import com.hdmcp.core.utils.UserPermissionUtil;
 import com.hdmcp.core.vo.User;
 import org.slf4j.Logger;
@@ -54,7 +56,7 @@ public class UserContextInterceptor extends HandlerInterceptorAdapter {
             respone.getWriter().write(jsonstr);
             respone.getWriter().flush();
             respone.getWriter().close();
-            throw new PermissionException("no permisson access service, please check");
+            throw new HdmcpException(ResultEnum.PERMISSION_ERROR);
         }
         UserContextHolder.set(user);
         return true;
@@ -79,12 +81,5 @@ public class UserContextInterceptor extends HandlerInterceptorAdapter {
         user.setUserId(userid);
         user.setUserName(username);
         return user;
-    }
-
-    static class PermissionException extends RuntimeException {
-        private static final long serialVersionUID = 1L;
-        public PermissionException(String msg) {
-            super(msg);
-        }
     }
 }

@@ -161,13 +161,11 @@ Dmaven.test.skip=true, 不执行测试用例，也不编译测试用例类
 
 ## TODO
 
-- [X] Netflix Eureka切换成Nacos Discovery
-- [X] Spring Cloud Config切换成Nacos Config
-- [X] 原gateway模块更改为zuul模块, 基于Netflix Zuul
-- [X] 新增gateway模块, 基于Spring Cloud Gateway
-- [X] Feign切换成Dubbo
-- [ ] Netflix Hystrix切换成Alibaba Sentinel
-- [ ] Samples bpm集成Activiti
-- [ ] 集成分布式事务中间件Alibaba Seata
-- [ ] Zipkin切换成Skywalking
-- [ ] Feign切换成gRPC
+- [X] Nacos Discovery
+- [X] Nacos Config
+- [X] Spring Cloud Gateway
+- [X] Dubbo
+- [ ] Alibaba Sentinel
+- [ ] Activiti
+- [ ] Alibaba Seata
+- [ ] Skywalking

@@ -2,16 +2,10 @@ spring:
   application:
     name: order
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     username: ${MYSQL_USERNAME:root}
     password: ${MYSQL_PASSWORD:Pa55Word}
     url: jdbc:mysql://${MYSQL_HOST:127.0.0.1}:${MYSQL_PORT:3306}/samples_order?characterEncoding=utf-8&useSSL=false&serverTimezone=GMT
-  zipkin:
-    base-url: http://${ZIPKIN_HOST:127.0.0.1}:${ZIPKIN_PORT:9411}
-    discovery-client-enabled: false
-  sleuth:
-    sampler:
-      probability: 1
   boot:
     admin:
       client:
