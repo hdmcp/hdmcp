@@ -53,41 +53,8 @@ spring:
   resources:
     add-mappings: false
 
-#eureka:
-#  client:
-#    security:
-#      basic:
-#        user: admin
-#        password: admin
-#    service-url:
-#      defaultZone: http://${eureka.client.security.basic.user}:${eureka.client.security.basic.password}@${EUREKA_SERVER_HOST:127.0.0.1}:${EUREKA_SERVER_PORT:8762}/eureka/
-#  instance:
-#    metadata-map:
-#      host-mark: running-host
-##      host-mark: gray-host
-
 server:
   port: ${SERVER_PORT:9091}
-
-feign:
-  client:
-    config:
-      default: # org.springframework.cloud.openfeign.FeignClientProperties
-        connectTimeout: 15000
-        readTimeout: 15000
-  hystrix:
-    enabled: true
-  httpclient: # 默认使用JDK原生的URLConnection发送HTTP请求 page no. 83
-    enabled: false
-  okhttp:
-    enabled: true
-#  compression: #feign开启GZIP压缩相关配置, 注意由于开启压缩之后，Feign之间的调用通过二进制协议进行传输，返回值需要修改为ResponseEntity<byte[]>才能正常显示
-#    strategy:
-#      enabled: true # 开启请求GZIP压缩
-#      mime-types: text/xml, application/xml, application/json # 配置压缩支持的MIME TYPE
-#      min-strategy-size: 2048 # 配置压缩数据大小的下线
-#    response:
-#      enabled: true # 开启响应GZIP压缩
 
 ribbon:
   ConnectTimeout: 5000
@@ -95,7 +62,6 @@ ribbon:
 
 logging:
   level:
-    org.springframework.cloud.openfeign: debug
     com.hdmcp.order.server.service.impl: debug
 management:
   endpoints:
