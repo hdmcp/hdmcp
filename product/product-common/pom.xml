@@ -24,22 +24,6 @@
         </dependency>
 
         <dependency>
-            <groupId>io.github.openfeign</groupId>
-            <artifactId>feign-core</artifactId>
-        </dependency>
-
-<!--        <dependency>-->
-<!--            <groupId>io.github.openfeign.form</groupId>-->
-<!--            <artifactId>feign-form</artifactId>-->
-<!--            <version>3.3.0</version>-->
-<!--        </dependency>-->
-
-        <dependency>
-            <groupId>io.github.openfeign.form</groupId>
-            <artifactId>feign-form-spring</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>

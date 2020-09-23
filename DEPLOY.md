@@ -35,10 +35,6 @@ url: `http://127.0.0.1:9092`
 
 数据库在83上, database: `nacos_config`
 
-## Zipkin:
-
-`http://192.168.88.87:9411`
-
 ## SkyWalking
 
 `http://192.168.88.87:8888`

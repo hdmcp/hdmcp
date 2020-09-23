@@ -14,15 +14,8 @@ spring:
         username: nacos
         password: nacos
 
-  zipkin:
-    base-url: http://${ZIPKIN_HOST:192.168.88.87}:${ZIPKIN_PORT:9411}
-    discovery-client-enabled: false
-  sleuth:
-    sampler:
-      probability: 1
-
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     username: ${MYSQL_USERNAME:root}
     password: ${MYSQL_PASSWORD:Pa55Word}
     url: jdbc:mysql://${MYSQL_HOST:127.0.0.1}:${MYSQL_PORT:3306}/samples_user?characterEncoding=utf-8&useSSL=false&serverTimezone=GMT
@@ -39,23 +32,9 @@ spring:
   resources:
     add-mappings: false
 
-#eureka:
-#  client:
-#    security:
-#      basic:
-#        user: ${EUREKA_BASIC_USER:admin}
-#        password: ${EUREKA_BASIC_PASSWORD:admin}
-#    service-url:
-#      defaultZone: http://${eureka.client.security.basic.user}:${eureka.client.security.basic.password}@${EUREKA_SERVER_HOST:127.0.0.1}:${EUREKA_SERVER_PORT:8762}/eureka/
-#  instance:
-#    metadata-map:
-#      host-mark: running-host
 server:
   port: ${SERVER_PORT:9095}
 
-logging:
-  level:
-    org.springframework.cloud.openfeign: debug
 management:
   endpoints:
     web:

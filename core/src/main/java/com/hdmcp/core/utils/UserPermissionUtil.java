@@ -68,7 +68,7 @@ public class UserPermissionUtil {
             allowPermissionService.add("client-service");
             allowPermissionService.add("provider-service");
             user.setAllowPermissionService(allowPermissionService);
-        }else if(user.getUserName().equals("spring")) {
+        } else if(user.getUserName().equals("spring")) {
             List allowPermissionService = new ArrayList();
             allowPermissionService.add("client-service");
             user.setAllowPermissionService(allowPermissionService);
