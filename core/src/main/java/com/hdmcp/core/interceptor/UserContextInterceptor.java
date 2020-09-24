@@ -52,7 +52,7 @@ public class UserContextInterceptor extends HandlerInterceptorAdapter {
         UserPermissionUtil.permission(user);
         if(!UserPermissionUtil.verify(user,request)) {
             respone.setHeader("Content-Type", "application/json");
-            String jsonstr = JSON.toJSONString("no permisson access service, please check");
+            String jsonstr = JSON.toJSONString(ResultEnum.PERMISSION_ERROR.getDesc());
             respone.getWriter().write(jsonstr);
             respone.getWriter().flush();
             respone.getWriter().close();

@@ -46,7 +46,7 @@ public class UserPermissionUtil {
         String url = request.getHeader("x-user-serviceName");
         if(StringUtils.isEmpty(user)) {
             return false;
-        }else {
+        } else {
             List<String> str = user.getAllowPermissionService();
             for (String permissionService : str) {
                 if(url.equalsIgnoreCase(permissionService)) {
@@ -63,12 +63,12 @@ public class UserPermissionUtil {
      * @param user user
      */
     public static void permission(User user){
-        if(user.getUserName().equals("admin")) {
+        if("admin".equals(user.getUserName())) {
             List allowPermissionService = new ArrayList();
             allowPermissionService.add("client-service");
             allowPermissionService.add("provider-service");
             user.setAllowPermissionService(allowPermissionService);
-        } else if(user.getUserName().equals("spring")) {
+        } else if("spring".equals(user.getUserName())) {
             List allowPermissionService = new ArrayList();
             allowPermissionService.add("client-service");
             user.setAllowPermissionService(allowPermissionService);
